@@ -2,7 +2,6 @@ import { FC, useContext } from 'react';
 import NextLink from 'next/link';
 import { Box, Button, CardActionArea, CardMedia, Grid, Link, Typography } from '@mui/material';
 
-import { initialData } from '../../database/products';
 import { ItemCounter } from '../ui';
 import { CartContext } from '../../context';
 import { ICartProduct } from '../../interfaces';
@@ -31,7 +30,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                             <NextLink href={`/product/${ product.slug }`} passHref>
                                 <Link>
                                     <CardActionArea>
-                                        <CardMedia 
+                                        <CardMedia
                                             image={ `/products/${ product.image }` }
                                             component='img'
                                             sx={{ borderRadius: '5px' }}
@@ -46,11 +45,11 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                                 <Typography variant='body1'>Talla: <strong>{ product.size }</strong></Typography>
 
                                 {
-                                    editable 
+                                    editable
                                     ? (
-                                        <ItemCounter 
+                                        <ItemCounter
                                             currentValue={ product.quantity }
-                                            maxValue={ 10 } 
+                                            maxValue={ 10 }
                                             updatedQuantity={ ( value ) => onNewCartQuantityValue(product, value )}
                                         />
                                     )
@@ -58,17 +57,17 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                                         <Typography variant='h5'>{ product.quantity } { product.quantity > 1 ? 'productos':'producto' }</Typography>
                                     )
                                 }
-                                
+
                             </Box>
                         </Grid>
                         <Grid item xs={2} display='flex' alignItems='center' flexDirection='column'>
                             <Typography variant='subtitle1'>{ `$${ product.price }` }</Typography>
-                            
+
                             {
                                 editable && (
-                                    <Button 
-                                        variant='text' 
-                                        color='secondary' 
+                                    <Button
+                                        variant='text'
+                                        color='secondary'
                                         onClick={ () => removeCartProduct( product ) }
                                     >
                                         Remover
